@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block title %}Agregar servicio{% endblock %}
+{% block content %}
+    <h1 class="mb-4">Agregar Servicio</h1>
+    <form action="{{ url_for('services.agregar_servicio', institucion_id=institucion_id) }}" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.nombre.label(class="form-label") }} 
+        {{ form.nombre(class="form-control") }}
+        {{ form.descripcion.label(class="form-label") }}
+        {{ form.descripcion(class="form-control") }}
+        {{ form.keywords.label(class="form-label") }}
+        {{ form.keywords(class="form-control") }}
+        {{ form.tipo_servicio.label(class="form-label") }}
+        {{ form.tipo_servicio(class="form-control") }} <br>
+        {{ form.habilitado.label}}
+        {{ form.habilitado}}
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+{% endblock %}

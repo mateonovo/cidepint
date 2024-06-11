@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block title %}Administracion de usuarios {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Búsqueda</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> <!-- Agregamos el CSS de Bootstrap -->
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Ver historial de institución</h1>
+        <form action="{{ url_for('admin.historial') }}" method="post">
+            <div class="form-group">
+                <label for="institucion_id">Selecciona una institución:</label>
+                <select class="form-control" id="institucion_id" name="institucion_id">
+                    {% for institucion in list_instituciones %}
+                        <option value="{{ institucion.id }}">{{ institucion.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+    </div>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block title %}Registro de Usuarios{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Historial de asignaciones</h1>
+            <br>
+            {% if asigns %}
+            <ul class="list-group">
+                {% for asign in asigns.items %} 
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-md-6">
+                                 <b>Correo Electrónico:</b> {{ asign.email }}
+                            </div>
+                            <div class="col-md-6">
+                                <b>Rol:</b> {{roles[asign.rol_id]}}
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>                     
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if asigns.has_prev %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1" aria-label="First">
+                                    <span aria-hidden="true">&laquo;&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ asigns.prev_num }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                        
+                        {% for page_num in asigns.iter_pages() %}
+                            {% if page_num %}
+                                <li class="page-item {% if page_num == asigns.page %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if asigns.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ asigns.next_num }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ asigns.pages }}" aria-label="Last">
+                                    <span aria-hidden="true">&raquo;&raquo;</span>
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+            <a class="btn btn-secondary" href="{{ url_for('admin.buscar') }}">Volver atras</a> <br>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block title %}Contacto{% endblock %}
+{% block content %}
+<h1>Informacion de contacto</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>direccion</th>
+            <th>telefono</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ info.direccion }}</td>
+            <td>{{ info.telefono }}</td>
+            <td>{{ info.email }}</td>
+        </tr>
+    </tbody>
+</table>
+<a href="{{ url_for('maintenance.index_contacto') }}" class="btn btn-primary mt-2">Editar</a>
+{% endblock %}

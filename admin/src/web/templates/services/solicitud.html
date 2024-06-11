@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Solicitud{% endblock %}
+{% block content %}
+
+        <h3>SOLICITUD</h3><br>
+        <a><b>Nombre del Cliente: </b>{{cliente.nombre}}</a><br>
+        <a><b>Email del Cliente: </b>{{cliente.email}}</a><br>
+        <a><b>Tipo de Servicio: </b>{{servicio.tipo_servicio}}</a><br>
+        <a><b>Fecha de Solicitud: </b>{{solicitud.fecha_creacion.strftime('%Y-%m-%d %H:%M:%S')}}</a><br>
+        <a><b>Detalles: </b>{{solicitud.detalles}}</a><br><br>
+        <a><b>ESTADO: </b>{{solicitud.estado}}</a><br>
+        <a><b>Fecha del último cambio de Estado: </b>{{solicitud.fecha_cambio_estado.strftime('%Y-%m-%d %H:%M:%S')}}</a><br>
+        <a><b>Observacion del último cambio: </b>{{solicitud.observacion_cambio_estado}}</a><br><br>
+
+        {% if solicitud.comentario != '' %}
+            <a><b>Último comentario del cliente: </b>{{ solicitud.comentario }}</a>
+        {% endif %}
+
+    <form method="POST" action="{{ url_for('services.update_solicitud', id=solicitud.id) }}">
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form><br>
+    <form method="POST" action="{{ url_for('services.destroy_solicitud', id=solicitud.id) }}">
+        <button type="submit" class="btn btn-primary">Eliminar</button>
+    </form>
+{% endblock %}

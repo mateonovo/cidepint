@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+{% block title %} {{ user.nombre }} {{ user.apellido }} {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">{{ user.nombre }} {{ user.apellido }}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Correo electrónico: </strong>{{ user.email }}</p>
+            <p><strong>Estado: </strong>
+                {% if user.activo %}
+                    Activo
+                {% else %}
+                    Bloqueado
+                {% endif %}
+            </p>
+            {% if not user_is_superadmin %}
+                <form method="post" action="{{ url_for('users.update_state', user_id=user.id) }}">
+                    <input type="hidden" name="usuario_id" value="{{ user.id }}">
+                    <button type="submit" class="btn btn-primary">
+                        {% if user.activo %}
+                            Bloquear
+                        {% else %}
+                            Activar
+                        {% endif %}
+                    </button>
+                </form>
+                <a href="{{ url_for('users.update_user', user_id=user.id) }}" class="btn btn-primary mt-2">Editar</a>
+                <form method="post" action="{{ url_for('users.destroy_user', user_id=user.id) }}">
+                    <input type="submit", class="btn btn-danger mt-2", value="Borrar usuario" onclick="return confirm('¿Estas seguro de que queres eliminar a este usuario?');">
+                </form>
+                <h2 class="mt-2 mb-4">Instituciones y roles: </h2>
+                <div class="list-group">
+                    
+                    <div class="list-group-item list-group-item-action">
+                        {% if instituciones_roles %}
+                            {% for institucion, rol in instituciones_roles %}
+                            <form method="post" action="{{ url_for('users.update_role_institution', institution_id=institucion.id, user_id=user.id) }}">
+                                <span>{{ institucion.nombre }} -</span>
+                                <select name="new_role" class="form-select" onchange="this.form.submit()">
+                                    <option value="owner" {% if rol.nombre == 'owner' %} selected {% endif %}>Dueño</option>
+                                    <option value="operator" {% if rol.nombre == 'operator' %} selected {% endif %}>Operador</option>
+                                    <option value="admin" {% if rol.nombre == 'admin' %} selected {% endif %}>Administrador</option>
+                                </select>
+                            </form>
+                            {% endfor %}
+                        {% endif %}
+                        {% if otras_instituciones %}
+                            {% for otra_institucion in otras_instituciones %}
+                            <form method="post" action="{{ url_for('users.assign_role_institution', institution_id=otra_institucion.id, user_id=user.id) }}">
+                                <span>{{ otra_institucion.nombre }} -</span>
+                                <select name="new_role" class="form-select" onchange="this.form.submit()">
+                                    <option value="asignar" selected>Designar rol</option>
+                                    <option value="owner">Dueño</option>
+                                    <option value="operator">Operador</option>
+                                    <option value="admin">Administrador</option>
+                                </select>
+                            </form>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+            
+
+            <a href="{{ url_for('users.index') }}" class="btn btn-outline-primary mt-2">
+                <i class="fas fa-arrow-left"></i> Volver atrás
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

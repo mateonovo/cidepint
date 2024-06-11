@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Actualizar Solicitud{% endblock %}
+{% block content %}
+<form action="{{ url_for('services.update_solicitud', id=solicitud.id) }}" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.estado.label(class="form-control-label") }}
+    {{ form.estado(class="form-control") }} <br>
+    {{ form.observacion_cambio_estado.label(class="form-label") }}
+    {{ form.observacion_cambio_estado(class="form-control")}}
+    <br>
+    {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}

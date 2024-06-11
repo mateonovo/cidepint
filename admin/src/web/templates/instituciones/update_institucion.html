@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block title %}Crear institucion{% endblock %}
+{% block content %}
+<form action="{{ url_for('instituciones.update', id=instit.id) }}" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.nombre.label(class="form-label") }} 
+    {{ form.nombre(class="form-control")}}
+    {{ form.informacion.label(class="form-label") }} 
+    {{ form.informacion(class="form-control")}}
+    {{ form.calle.label(class="form-label") }}
+    {{ form.calle(class="form-control")}}
+    {{ form.numero.label(class="form-label") }}
+    {{ form.numero(class="form-control")}}
+    {{ form.localizacion.label(class="form-label") }}
+    {{ form.localizacion(class="form-control")}}
+    {{ form.palabras_claves.label(class="form-label") }} 
+    {{ form.palabras_claves(class="form-control")}}
+    {{ form.horarios.label(class="form-label") }} 
+    {{ form.horarios(class="form-control")}}
+    {{ form.web.label(class="form-label") }} 
+    {{ form.web(class="form-control")}}
+    {{ form.contacto.label(class="form-label") }} 
+    {{ form.contacto(class="form-control")}}
+    <br>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+{% endblock %}

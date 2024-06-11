@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Mantenimiento{% endblock %}
+{% block content %}
+<html>
+<head>
+    <title>Selección de Modo de Mantenimiento</title>
+</head>
+<body>
+    <h1>Activar/Desactivar mantenimiento</h1>      
+    <br>
+    <h5><span class="text-success ml-0">Mensaje actual:</span> "{{ mensaje }}"</h5>
+    <form method="POST" action="{{ url_for('maintenance.toggle_maintenance') }}">
+        {{ form.hidden_tag() }}
+        {% if not  is_maintenance() %}
+             {{ form.activate_maintenance(class="btn btn-secondary mt-3") }}
+        {% endif %}
+        {% if  is_maintenance() %}
+             {{ form.deactivate_maintenance(class="btn btn-secondary mt-3") }}
+        {% endif %}
+        <br>
+        <br>
+        {{form.mensaje.label(class="form-label")}}
+        {{form.mensaje(class="form-control")}}
+        <br>
+        {{form.guardar(class="btn btn-primary")}}
+    </form>
+</body>
+</html>
+{% endblock %}

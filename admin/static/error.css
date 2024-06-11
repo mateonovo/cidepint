@@ -1,0 +1,37 @@
+/* Estilo para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el título */
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin-top: 50px;
+}
+
+/* Estilo para la descripción del error */
+.zoom-area {
+    font-size: 18px;
+    color: #666;
+    margin: 20px 0;
+}
+
+/* Estilo para el enlace de volver al inicio */
+.more-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.more-link:hover {
+    background-color: #0056b3;
+}

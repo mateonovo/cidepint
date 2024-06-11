@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block title %}Index{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-7 col-sm-7">
+    <h1 class="mb-4">Bienvenido a CIDEPINT - Sitio administrativo</h1>
+    <hr>
+    <p class="lead">En la actualidad, el CIDEPINT es una institución que depende del sistema CICPBA-CONICET-UNLP y 
+      ha ampliado considerablemente su campo de experiencia. El centro cuenta hoy con personal capacitado en el 
+      desarrollo y caracterización de pinturas anticorrosivas y decorativas, antiincrustantes, con propiedades 
+      antifúngicas, entre otras con aplicaciones específicas. De la misma manera se incorporaron líneas de trabajo 
+      en el área de pretratamientos de aceros, biodeterioro de materiales estructurales, inhibición de la corrosión, 
+      galvanoplastía y siderurgia, muchas de las cuales se enfocan en la obtención de alternativas ecológicas que 
+      reduzcan el impacto de la industria sobre el medio ambiente.</p>
+    </div>
+    <div class="col-md-5 col-sm-5">
+      <img src="{{ url_for('static', filename='images/pintor.jpg') }}" alt="Imagen introductoria" id="image">
+    </div>
+  </div>
+  <hr>
+</div>
+{% endblock %}
+
+

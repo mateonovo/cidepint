@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block title %}Asignar Rol{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<form action="{{ url_for('admin.asignar', user_id=user_id, institucion_id= institucion_id)}}" method="POST">
+
+
+    {% if rolActual == 'operator' %}
+        <p> <b> El usuario actualmente es operador, seleccione el nuevo rol </b> </p>
+        <button type="submit" class="btn btn-primary" name="rol" value="2" >Dueño</button>
+        <button type="submit" class="btn btn-primary" name="rol" value="3" >Administrador</button>
+        <button type="submit" class="btn btn-danger" name="rol" value="5" >Quitar rol</button> 
+    {% elif rolActual == 'admin' %}
+        <p> <b>El usuario actualmente es administrador, seleccione el nuevo rol </b> </p>
+        <button type="submit" class="btn btn-primary" name="rol" value="4" >Operador</button>
+        <button type="submit" class="btn btn-primary" name="rol" value="2" >Dueño</button>
+        <button type="submit" class="btn btn-danger" name="rol" value="5" >Quitar rol</button> 
+    {% elif rolActual == 'owner' %}
+        <p> <b>El usuario actualmente es dueño, seleccione el nuevo rol  </b> </p>
+        <button type="submit" class="btn btn-primary" name="rol" value="3" >Administrador</button>
+        <button type="submit" class="btn btn-primary" name="rol" value="4" >Operador</button>
+        <button type="submit" class="btn btn-danger" name="rol" value="5" >Quitar rol</button>     
+    {% else %}
+        <p> <b> El usuario no posee un rol en la institucion, seleccione su nuevo rol </b> </p>
+        <button type="submit" class="btn btn-primary" name="rol" value="3" >Administrador</button>
+        <button type="submit" class="btn btn-primary" name="rol" value="4" >Operador</button>
+        <button type="submit" class="btn btn-primary" name="rol" value="2" >Dueño</button>
+    {% endif %}
+
+</form>  
+</body>
+</html>
+{% endblock %}

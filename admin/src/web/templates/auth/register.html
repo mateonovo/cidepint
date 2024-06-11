@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block title %}Registro de usuarios{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Registrarse</h2>
+                    <form action="{{ url_for('auth.register_user') }}" method="POST">
+                        {{ form.hidden_tag() }}
+                        <div class="mb-3">
+                            {{ form.nombre.label(class="form-label") }}
+                            {{ form.nombre(class="form-control") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.apellido.label(class="form-label") }}
+                            {{ form.apellido(class="form-control") }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form.email.label(class="form-label") }}
+                            {{ form.email(class="form-control") }}
+                            {% for error in form.email.errors %}
+                            <div class="text-danger">Introduzca un correo electrónico válido</div>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Registrarse</button>
+                    </form>
+                </div>
+                <br>
+                <p class="text-inverse text-center">¿Ya tenes una cuenta? <a href="{{ url_for('auth.login') }}" data-abc="true">Inicia sesión</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}Iniciar sesión{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Iniciar sesión</h2>
+                    <form action="{{ url_for('auth.authenticate') }}" method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico:</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña:</label>
+                            <input type="password" id="password" name="password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+                    </form>
+                    <hr class="my-4">
+                    <a href="{{ url_for('auth.google') }}" class="btn btn-lg btn-google btn-block btn-outline">
+                        <i class="fab fa-google mr-2"></i> Ingresar con Google
+                    </a>
+                </div>
+                <br>
+                <p class="text-inverse text-center">¿No tenes una cuenta? <a href="{{ url_for('auth.register') }}" data-abc="true">Registrate</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

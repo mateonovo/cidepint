@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block title %}Contacto{% endblock %}
+{% block content %}
+<h1>Número de elementos por pagina</h1>
+<br>
+<form action="{{ url_for('maintenance.update_paginado') }}" method="POST">
+        {{ form.hidden_tag() }}
+        <h3>paginado actual : {{per_page}} </h3> 
+        <strong>{{ form.per_page.label }}</strong>
+         {{form.per_page}}
+        {{form.guardar(class="btn btn-primary")}}
+ </form>       
+{% endblock %}

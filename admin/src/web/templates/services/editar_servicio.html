@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block title %}Editar Servicio{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Editar Servicio</h1>
+
+    <form action="{{ url_for('services.editar_servicio', servicio_id=servicio.id, institucion_id=institucion_id) }}" method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.nombre.label(class="form-label") }} 
+        {{ form.nombre(class="form-control") }}
+        {{ form.descripcion.label(class="form-label") }}
+        {{ form.descripcion(class="form-control") }}
+        {{ form.keywords.label(class="form-label") }}
+        {{ form.keywords(class="form-control") }}
+        {{ form.tipo_servicio.label(class="form-label") }}
+        {{ form.tipo_servicio(class="form-control") }} <br>
+        {{ form.habilitado.label}}
+        {{ form.habilitado}}
+        <br>
+        <br>
+    <div class="btn-group">
+            <button type="submit" class="btn btn-primary" style="margin-right: 10px;" >Editar</button>
+        </form>
+        {% if has_permissions(['services_destroy']) %}
+            <form action="{{ url_for('services.eliminar', servicio_id=servicio.id, institucion_id=institucion_id) }}" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('¿Estás seguro de que deseas borrar este servicio?')">Eliminar</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}
