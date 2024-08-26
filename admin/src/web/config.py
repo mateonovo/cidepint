@@ -14,12 +14,12 @@ class Config(object):
     MAIL_SERVER = 'smtp.gmail.com'
     MAIL_PORT = 587
     MAIL_USERNAME = 'cidepint.proyecto@gmail.com'
-    MAIL_PASSWORD = 'tihdtlofndswghxw '
+    MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
     PER_PAGE = 5
-    GOOGLE_CLIENT_ID = '779889385687-1j6e1fv1ml7oev1i28gr41ab4u66d5u9.apps.googleusercontent.com'
-    GOOGLE_CLIENT_SECRET = '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'
+    GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID")
+    GOOGLE_OAUTH_CLIENT_SECRET = os.getenv("GOOGLE_OAUTH_CLIENT_SECRET")
 
 
 class ProductionConfig(Config):
